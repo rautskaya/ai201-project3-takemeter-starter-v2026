@@ -1,0 +1,55 @@
+text,label,note
+The new app has too much going on. Health tracking should not feel like navigating a complicated enterprise dashboard just to see steps and sleep.,hot_take,cold
+My heart rate graph shows 95 to 105 bpm for most of a meeting where I was sitting still. My manual pulse check during the meeting was 68 bpm.,analysis,cold
+"New to Fitbit (or any wearable). Tips?
+
+I've never worn a tracker before, and just got my Fitbit Charge 6 in the mail. I've downloaded the app, and synced my phone and LoseIt app.
+
+It's charging now, so while I wait, I'm trying to learn what I can, explore the app, etc.
+
+I would love your tips, tricks, and thoughts! What should I focus on first? What are the best settings to conserve battery, but still get good use out of the tracker? Anything you wish you'd known when you got your first tracker?",request,cold
+"Fitbit used to be one of those products I could recommend without thinking. Now I would have to explain all the software issues and Google changes first, which says a lot about how far the experience has fallen.",hot_take,cold
+"My Fitbit says it is connected, but notifications from my Android phone stopped appearing yesterday. Calls and texts both stopped. What settings should I check first?",request,cold
+"I'm looking into getting a new fitbit, I've used one in the past but with so many new ones, it's so hard to choose! I like something that is simple and sleek but also tracks my treadmill walks/runs, outdoor walking and steps and other workouts along with heart rate. But there are so many different ones, its hard to choose which one I would really want.",request,cold
+"The app keeps asking me to reconnect my Google account even though I already migrated. Is anyone else getting this, and how did you fix it?",request,cold
+"I’m considering buying a used Sense 2. Is there anything I should check before buying one second-hand, especially battery health or account lock issues?",request,cold
+"I compared my morning resting heart rate across devices for a week. Fitbit averaged 64 bpm, while my blood pressure cuff and manual pulse checks were usually between 56 and 59.",analysis,cold
+My Charge 6 won’t finish syncing unless I open the app and manually refresh several times. Is there a way to make background sync work normally again?,request,cold
+"My step total changed after syncing. Before sync the watch showed 10,482 steps, and after sync the app showed 9,731.",analysis,cold
+"Just wondering if anyone else has been having battery issues since the takeover. Initially I noticed I was having to recharge more frequently (I just assumed it was getting close to needing an upgrade). But, over the past few weeks my fitbit will go blank (seemingly out of battery) - then when I pop it on to charge it tells me it still has 70/80/90% battery. So frustrating!",analysis,cold
+"I charged my Charge 6 to 100% before bed. Eight hours later it was at 76%, even though I did not use GPS, notifications, or always-on display overnight.",analysis,cold
+"I walked a route that is exactly 1.5 miles according to Google Maps. Fitbit logged 1.27 miles, while my phone GPS logged 1.48.",analysis,cold
+"My Charge 6 keeps disconnecting from Bluetooth every few hours. Restarting the phone fixes it temporarily, but it always happens again. Has anyone found a permanent fix?",request,cold
+The software is now the weakest part of owning a Fitbit. That is especially frustrating because the app used to be one of the main reasons I preferred Fitbit over other trackers.,hot_take,cold
+"I took a HIIT class last Monday. Was wearing a BFT heart rate monitor and my new FitBit Air. Heart rate monitor clocked my HR at 75% up to 93%. The FitBit clocked me at barely zone 2, basically a casual walk.
+
+The next day, I did almost nothing. Took a nap. Sat around the house. FitBit said I did 5500 steps, which is ridiculous.
+
+Tuesday night, I got a sleep score of 92, despite my daughter waking me multiple times in the night. Doesn't seem right at all.
+
+Friday I did a heavy upper and lower body weights session. FitBit registered zero exercise for the day.
+
+Honestly disappointed on almost all fronts.
+
+The data is completely unreliable, at this rate, it's basically a glorified pat-on-the-back machine.
+
+Anyone else?",analysis,cold
+I would rather have fewer Fitbit features that work consistently than a long list of features that make the app feel unfinished. The current direction seems focused on quantity instead of quality.,hot_take,cold
+Fitbit used to feel lightweight and focused. Now the software feels bloated. More features do not automatically make a product better.,hot_take,cold
+"To all the members who received their Fitbit air, how is your experience so far?
+
+Hey Guys,
+
+So as the title says, how is your experience so far? both with the fitbit air and also with the google health app. also please mention which device (mobile - IOS/android) you are using so that it helps to understand the experience better.",request,cold
+The worst part of the Google transition is that longtime Fitbit users clearly were not the priority. It feels like the product was rebuilt around Google’s ecosystem instead of the community that made Fitbit successful.,hot_take,cold
+Google took something that was easy to understand and made it unnecessarily complicated. That is probably the most frustrating part of the entire Fitbit transition.,hot_take,cold
+Fitbit logged a 22-minute bike ride while I was driving to work. I did not exercise at all during that time.,analysis,cold
+"I started a run at the same time on my Fitbit and Strava. After 30 minutes, Strava showed 3.02 miles while Fitbit showed 2.67 miles. Pace was therefore about a minute per mile slower on Fitbit.",analysis,cold
+"Should I get a Fitbit?
+
+I’m thinking about getting a fitbit but I am on the fence. Is it worth it? Pros and cons? Accuracy is the main thing for me. If it’s not accurate I’m not going to waste my time/money.",request,cold
+I would rather have the old Fitbit app with fewer features than the current app with more features. The old version simply made more sense for everyday use.,hot_take,cold
+"Fitbit gave me 6,300 steps on a day when my phone recorded 4,100. I carried both all day and did not do any activity where my phone would have been left behind.",analysis,cold
+"I mainly lift weights and do very little cardio. Is Fitbit useful for strength training, or would another tracker be better for that kind of workout?",request,cold
+"The app says I slept 8 hours and 20 minutes, but I was only in bed for 7 hours and 35 minutes, so it appears to have counted time before bed as sleep.",analysis,cold
+My Charge 6 keeps starting cycling workouts when I’m riding in a car. Can automatic exercise detection be adjusted so it stops doing that?,request,cold
