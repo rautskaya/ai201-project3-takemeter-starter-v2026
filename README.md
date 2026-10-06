@@ -23,66 +23,51 @@
 
 ---
 
-<!-- ─────────────────────────────────────────────────────────────────────────
-     HOW TO USE THIS FILE
-
-     Unit 5 asks for the first five sections. Unit 6 adds the five below them.
-
-     Everything is pasted as TEXT. No screenshots, no images.
-
-     ⚠️ The confusion matrix especially. The notebook prints one as a markdown
-     table, ready to copy. A screenshot of a matrix earns nothing. Paste the
-     table.
-     ───────────────────────────────────────────────────────────────────────── -->
-
-<!-- ═══════════════════════ UNIT 5 — THE BUILD ═══════════════════════ -->
-
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
-
-
+This classifier reads posts from r/fitbit, a public subreddit where people share Fitbit problems, buying advice, and opinions. It sorts each post into one of three labels: `analysis` (a claim backed by a specific, checkable fact), `request` (asking for help or advice), or `hot_take` (a confident opinion with no evidence behind it). In short, it distinguishes claims supported by evidence from posts that are simply questions or unsupported opinions.
 
 ---
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `analysis`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
-
-**Definition:**
+**Definition:** Makes a claim backed by a specific, checkable fact — a battery percentage, a step count, a named model/spec comparison, a screenshot of data.
 
 **Example 1:**
->
+> "Google health app and Charge 6 battery life" — battery went from 55% to 49% during a 24-minute drive, cutting battery life in half.
 
 **Example 2:**
->
+> "Lower Battery Life Since Google Health Switch" — Charge 6 now dies within 1-2 hours once it hits low battery, and only lasts a couple of days total, down from a full week before.
 
-### `label_two`
+### `request`
 
-**Definition:**
+**Definition:** Asking for specific help, troubleshooting, or buying advice — seeking information rather than asserting a claim.
 
 **Example 1:**
->
+> "Connecting Fitbit Aria 2026" — setup gets stuck right after connecting to Wi-Fi, ends with "Anyone got any ideas?"
 
 **Example 2:**
->
+> "Fitbit Air won't pair – 'PIN or pair code is incorrect'" — describes the exact error message and asks why it won't pair.
+
+### `hot_take`
+
+**Definition:** A confident claim about the product or brand with no supporting evidence offered.
+
+**Example 1:**
+> "Been using fitbit for 10 years RUINED" — calls the new app "absolutely terrible" and says "nothing about this update is good," with no specific data behind it.
+
+**Example 2:**
+> "Google always makes it worse" — "Why does everything Google touches turn to $hit? I despise this new app... We just want the numbers... It's now useless." Strong, emotional judgment with no specific data or checkable fact behind it.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `analysis` vs. `hot_take`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule I used every time:** If a strong opinion is backed by a specific, checkable fact or measurement, label it `analysis` — even if the tone is heated. Only use `hot_take` when the judgment is asserted with no supporting evidence at all.
 
-
+This came from a genuinely ambiguous post: "New to Fitbit I can't believe how completely wrong the sleep tracker is" calls the tracker "completely and utterly useless" (sounds like a `hot_take`), but backs it up with a specific observation — checked their phone at 12:45 AM while Fitbit reported them asleep since 11 PM, and later showed them asleep while they'd actually been awake for over 1.5 hours. The heated language made it *feel* like `hot_take`, but the rule is about evidence, not tone — so this one is `analysis`.
 
 ---
 
