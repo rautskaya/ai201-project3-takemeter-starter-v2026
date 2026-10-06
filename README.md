@@ -25,7 +25,13 @@
 
 ## What This Does
 
-This classifier reads posts from r/fitbit, a public subreddit where people share Fitbit problems, buying advice, and opinions. It sorts each post into one of three labels: `analysis` (a claim backed by a specific, checkable fact), `request` (asking for help or advice), or `hot_take` (a confident opinion with no evidence behind it). In short, it distinguishes claims supported by evidence from posts that are simply questions or unsupported opinions.
+This classifier sorts r/fitbit posts into three labels:
+
+- `analysis`: a claim backed by a specific, checkable fact (a battery %, a step count, a spec)
+- `request`: asking for help, troubleshooting or buying advice
+- `hot_take`: a confident opinion with no evidence
+
+It separates claims that have evidence behind them from questions and from opinions that don't.
 
 ---
 
@@ -39,24 +45,24 @@ This classifier reads posts from r/fitbit, a public subreddit where people share
 > "Google health app and Charge 6 battery life" — battery went from 55% to 49% during a 24-minute drive, cutting battery life in half.
 
 **Example 2:**
-> "Lower Battery Life Since Google Health Switch" — Charge 6 now dies within 1-2 hours once it hits low battery, and only lasts a couple of days total, down from a full week before.
+> "I run 3 miles everyday and it was always tracked appropriately before the switch and now my runs are getting under valued by a lot (between half mile and .75)." — a known distance measured against Fitbit's number.
 
 ### `request`
 
 **Definition:** Asking for specific help, troubleshooting, or buying advice — seeking information rather than asserting a claim.
 
 **Example 1:**
-> "Connecting Fitbit Aria 2026" — setup gets stuck right after connecting to Wi-Fi, ends with "Anyone got any ideas?"
+> "I accidentally removed my Fitbit from the app and now I can't get it paired again. The setup process finds the device but fails after entering the code. Any ideas?"
 
 **Example 2:**
-> "Fitbit Air won't pair – 'PIN or pair code is incorrect'" — describes the exact error message and asks why it won't pair.
+> "My Fitbit app is showing yesterday's resting heart rate but today's value never appears, even after several manual syncs. Has anyone fixed this without reinstalling the app?"
 
 ### `hot_take`
 
 **Definition:** A confident claim about the product or brand with no supporting evidence offered.
 
 **Example 1:**
-> "Been using fitbit for 10 years RUINED" — calls the new app "absolutely terrible" and says "nothing about this update is good," with no specific data behind it.
+> "After 13yrs of owning fitbit products I am moving on... Google pretty much ruined a great product by stripping away features while simultaneously making the app more buggy and worthless." — a strong verdict with no specific feature, number or bug named.
 
 **Example 2:**
 > "Google always makes it worse" — "Why does everything Google touches turn to $hit? I despise this new app... We just want the numbers... It's now useless." Strong, emotional judgment with no specific data or checkable fact behind it.
@@ -67,97 +73,85 @@ This classifier reads posts from r/fitbit, a public subreddit where people share
 
 **The decision rule I used every time:** If a strong opinion is backed by a specific, checkable fact or measurement, label it `analysis` — even if the tone is heated. Only use `hot_take` when the judgment is asserted with no supporting evidence at all.
 
-This came from a genuinely ambiguous post: "New to Fitbit I can't believe how completely wrong the sleep tracker is" calls the tracker "completely and utterly useless" (sounds like a `hot_take`), but backs it up with a specific observation — checked their phone at 12:45 AM while Fitbit reported them asleep since 11 PM, and later showed them asleep while they'd actually been awake for over 1.5 hours. The heated language made it *feel* like `hot_take`, but the rule is about evidence, not tone — so this one is `analysis`.
+This came from a genuinely ambiguous post: "My charge 6 battery life has plummeted from 6-7 days pre-app migration to 3-4 days with the google health app... Am I insane or is this app somehow draining my battery twice as fast?" The frustrated tone made it *feel* like `hot_take`, but it gives a specific before-and-after battery measurement. The rule is about evidence, not tone, so this one is `analysis`.
 
 ---
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
+**Where the posts came from:** Public posts from r/fitbit.
 
-**Where the posts came from:**
-
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** I labelled 20 posts cold, by hand. I labelled the remaining 180 using an AI tool, then checked them and fixed about 20.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `request` | 74 | 37% |
+| `analysis` | 72 | 36% |
+| `hot_take` | 54 | 27% |
+| **Total** | 200 | 100% |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
+**1. Charge 6 battery drain**
+> *The post:* Battery loses about 15% overnight. Did the Google Health app cause it, and does anyone have a fix?
+>
+> *Could have been:* `request` or `analysis`
+>
+> *I chose `request`, because:* It has a measurable fact, but its main purpose is "how do I fix this?"
 
-**1.**
-> *The post:*
+**2. Fitbit Air workout accuracy**
+> *The post:* Compares Fitbit with another heart-rate monitor using specific numbers (75–93% HR, 5,500 steps, sleep score 92), then says the data is unreliable.
 >
-> *Could have been:*
+> *Could have been:* `analysis` or `hot_take`
 >
-> *I chose, because:*
+> *I chose `analysis`, because:* The tone is harsh, but the complaint is backed by checkable evidence. Evidence beats tone.
 
-**2.**
-> *The post:*
+**3. "I'm done with Fitbit" Charge 6 post**
+> *The post:* Charge 6 stopped charging. The user has owned several Fitbits and ends with "Fitbit, I'm done with you."
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `request`
 >
-> *I chose, because:*
-
-**3.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+> *I chose `hot_take`, because:* There's a technical problem, but the post is venting and quitting the brand, not asking how to fix it.
 
 ---
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
+**Base model:** `distilbert-base-uncased`
 
-**Base model:**
+**Settings:** 3 epochs · learning rate 2e-5 · batch size 16 · seed 42 · max length 128 tokens
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Anything I changed from the defaults, and why:** Nothing. I kept the defaults so this first run is a clean starting point to compare against.
 
-**Anything I changed from the defaults, and why:**
+**Split sizes:** train 139 · val 31 · test 30
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `analysis` | 50 | 11 | 11 |
+| `hot_take` | 38 | 8 | 8 |
+| `request` | 51 | 12 | 11 |
 
-
+`hot_take` has only 8 posts in the test split, so its F1 will be the jumpiest across seeds.
 
 ---
 
 ## How I Used AI
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* What my notebook section 2 output meant (`3 labels: analysis, hot_take, request`, plus the default settings).
+- *What came back:* Claude checked `labels.csv` against `LABELS` and confirmed they matched exactly. It reported my counts (74 / 72 / 54) and warned that `hot_take` would get only about 8 posts in the test split, so its score would be jumpy.
+- *What I changed:* Nothing in the data. I kept the default settings and treated `hot_take` as my least stable label.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I gave an AI tool my three label definitions and the `analysis` vs `hot_take` rule, and asked it to label the remaining 180 posts.
+- *What came back:* One label per post.
+- *What I changed:* About 20 of the 180 labels were wrong. I read through the AI labels and fixed those.
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** I labelled 20 posts cold, by hand. I labelled the remaining 180 using an AI tool, then checked them and fixed about 20.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
